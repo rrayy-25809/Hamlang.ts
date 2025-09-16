@@ -1,7 +1,7 @@
 type Value = {st?: string | number | any | null} | null; // 테스트용 타입 선언
 var valuesdict:Value = {}; // 변수 저장용 딕셔너리
 
-function Type(code:string):Value {
+function Type(code:string):Value | string {
     if (code.startsWith("#")) {
         return null; //주석 표시가 있다면 null 리턴
     } else if (code.startsWith(" ")) {
@@ -20,7 +20,7 @@ function Type(code:string):Value {
         }
     } else if (code.startsWith("출력 ")) {
         print(Type(code.slice(3)));
-        return null;
+        return "";
     } else if (code.startsWith("질문 ")) {
         return Type(prompt(Type(code.slice(3)),Type(code.slice(3))))
     } else if (code.startsWith("변수 ")) {
@@ -29,7 +29,7 @@ function Type(code:string):Value {
         let remaining_part = t.slice(first_part.length + 1);
         if (remaining_part.startsWith("는 ")) { //변수를 선언할 때
             valuesdict[first_part] = Type(remaining_part.slice(2));
-            return
+            return ""
         }else if (first_part in valuesdict){ //변수를 사용할 때
             return Type(valuesdict[first_part]+Type(remaining_part))
         }else{
