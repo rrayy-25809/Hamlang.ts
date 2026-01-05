@@ -1,16 +1,16 @@
-type Value = {st?: string | number | any | null} | null; // 테스트용 타입 선언
-var valuesdict:Value = {}; // 변수 저장용 딕셔너리
+var valuesdict:any = {}; // 변수 저장용 object
 
-function Type(code:string):Value | string {
+function Type(code:string): string {
+    console.log("처리 중인 코드:", code);
     if (code.startsWith("#")) {
-        return null; //주석 표시가 있다면 null 리턴
+        return ""; //주석 표시가 있다면 null 리턴
     } else if (code.startsWith(" ")) {
         return Type(code.slice(1));//공백 제거
     } else if (code.endsWith(" ")) {
         return Type(code.trimEnd());//공백 제거
     } else if (code.startsWith("반복 ")) {
         let words = code.slice(3).split(":")
-        for (let index = 0; index < parseInt(Type(words[0])); index++) {
+        for (let index = 0; index < parseInt(Type(words[0]) as string); index++) {
             Type(words[1])
         }
     } else if (code.startsWith("만약 ")) {
@@ -19,10 +19,14 @@ function Type(code:string):Value | string {
             return Type(words[1])
         }
     } else if (code.startsWith("출력 ")) {
-        print(Type(code.slice(3)));
+        const print_text = Type(code.slice(3)) as string;
+        if (print_text !== "") {
+            print(print_text);
+        }
         return "";
     } else if (code.startsWith("질문 ")) {
-        return Type(prompt(Type(code.slice(3)),Type(code.slice(3))))
+        const prompt_text = Type(code.slice(3)) as string;
+        return Type(prompt(prompt_text) as string);
     } else if (code.startsWith("변수 ")) {
         let t = code.slice(3);
         let first_part = t.split(" ")[0];
@@ -43,7 +47,7 @@ function Type(code:string):Value | string {
     } else {
         return code
     }
-    return null;
+    return "";
 }
 
 function c_bool(boolStr:string):string|undefined {
@@ -69,15 +73,21 @@ function c_bool(boolStr:string):string|undefined {
 }
 
 function print(text:string):void { //결과 출력
-    var outputDiv = document.getElementById('output') as HTMLDivElement;
+    const outputDiv = document.getElementById('output') as HTMLDivElement;
+    const textNode = document.createElement("p");
+
     outputDiv.classList.add("alert-primary");
-    outputDiv.textContent += ">>" + text + "\n"; // 줄 바꿈 추가
+    textNode.textContent = ">>" + text;
+    outputDiv.appendChild(textNode);
 }
 
 function errorprint(text:string):void { //결과 출력
-    var outputDiv = document.getElementById('output') as HTMLDivElement;
+    const outputDiv = document.getElementById('output') as HTMLDivElement;
+    const textNode = document.createElement("p");
+
     outputDiv.classList.add("alert-danger"); //경고라고 명시
-    outputDiv.textContent += ">>"+text + "\n"; // 줄 바꿈 추가
+    textNode.textContent = ">>" + text;
+    outputDiv.appendChild(textNode);
 }
 
 function reset_valuesdict():void { //변수 초기화
