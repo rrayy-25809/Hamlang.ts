@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/Hamlang.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="rrayy(함태준)">
+    <meta name="description" content="Hamlang - 프로그래밍 언어를 배우고 실험하는 웹 플레이그라운드">
+    <title>Hamlang - 웹 플레이그라운드</title>
+    <script type="module" crossorigin src="/assets/index-DPyUgxs7.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DOtYcoYz.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-top">
+          <div class="header-title">
+            <h1 class="title">Hamlang</h1>
+            <p class="subtitle">언어를 배우고 실험하는 공간</p>
+          </div>
+          <div class="header-links">
+            <a href="https://github.com/rrayy-25809/Hamlang.py" class="link-btn" target="_blank">예시 다운로드</a>
+            <a href="https://github.com/rrayy-25809/Hamlang.py/raw/main/main.py" class="link-btn" target="_blank">Python 버전</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Playground -->
+      <main class="playground">
+        <!-- Code Input Section -->
+        <section class="editor-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">코드 입력</h2>
+            <div class="file-upload-wrapper">
+              <input id="fileInput" type="file" class="file-input-hidden" accept=".txt,.py,.hamlang">
+              <button type="button" id="fileButton" class="action-btn file-btn">
+                <span class="btn-icon">📂</span> 파일 불러오기
+              </button>
+            </div>
+          </div>
+          <textarea 
+            id="input" 
+            class="code-editor" 
+            spellcheck="false" 
+            placeholder="여기에 코드를 입력하거나 파일을 불러오세요..."
+          ></textarea>
+        </section>
+
+        <!-- Control Section -->
+        <div class="control-section">
+          <button type="button" id="runButton" class="run-btn">
+            <span class="run-icon">▶</span> 실행
+          </button>
+          <button type="button" id="resetButton" class="reset-btn">
+            <span class="reset-icon">⟲</span> 초기화
+          </button>
+        </div>
+
+        <!-- Output Section -->
+        <section class="output-panel">
+          <div class="panel-header">
+            <h2 class="panel-title">결과</h2>
+          </div>
+          <div id="output" class="output-content">
+            <p class="output-placeholder">코드를 실행하면 결과가 여기에 표시됩니다</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Hamlang · <a href="https://github.com/rrayy-25809/Hamlang.ts" target="_blank">GitHub</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
