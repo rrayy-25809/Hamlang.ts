@@ -15,10 +15,13 @@
     "vite": "^6.1.0"
   },
   "dependencies": {
-    "@capacitor/android": "8.0.0",
+    "@capacitor/android": "8.0.1",
     "@capacitor/app": "8.0.0",
-    "@capacitor/cli": "8.0.0",
-    "@capacitor/core": "8.0.0",
+    "@capacitor/cli": "8.0.1",
+    "@capacitor/core": "8.0.1",
     "bootstrap": "^5.3.3"
+  },
+  "overrides": {
+    "tar": "^7.5.4"
   }
 }
